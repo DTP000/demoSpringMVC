@@ -54,22 +54,16 @@ public class UserController {
     }
 	
 	@PostMapping(value = "/user/{userId}/update")
-	public ModelAndView updateUser(@PathVariable Integer userId, @ModelAttribute("user") User user) {
+	public String updateUser(@PathVariable Integer userId, @ModelAttribute("user") User user) {
 		user.setId(userId);
 		this.userService.update(user);
-		ModelAndView modelAndView = new ModelAndView("user/detail");
-		modelAndView.addObject("user", user);
-        modelAndView.addObject("message", "Update user success");
-		return modelAndView;
+		return "redirect:/user/" + userId;
 	}
 	
 	@PostMapping(value = "/user/{userId}/delete")
-	public ModelAndView deleteProduct(@PathVariable Integer userId) {
+	public String deleteProduct(@PathVariable Integer userId) {
 		this.userService.destroy(userId);
-		List<User> users = this.userService.findAll();
-		ModelAndView modelAndView = new ModelAndView("user/list");
-		modelAndView.addObject("users", users);
-		return modelAndView;
+		return "redirect:/users";
 	}
 	
 }

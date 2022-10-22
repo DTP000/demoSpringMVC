@@ -66,21 +66,15 @@ public class ProductController {
     }
 	
 	@PostMapping(value = "/product/{productId}/update")
-	public ModelAndView updateProduct(@PathVariable Integer productId, @ModelAttribute("product") Product product) {
+	public String updateProduct(@PathVariable Integer productId, @ModelAttribute("product") Product product) {
 		product.setId(productId);
 		this.productService.update(product);
-		ModelAndView modelAndView = new ModelAndView("product/detail");
-		modelAndView.addObject("product", product);
-        modelAndView.addObject("message", "Update product success");
-		return modelAndView;
+		return "redirect:/product/" + productId;
 	}
 	
 	@PostMapping(value = "/product/{productId}/delete")
-	public ModelAndView deleteProduct(@PathVariable Integer productId) {
+	public String deleteProduct(@PathVariable Integer productId) {
 		this.productService.destroy(productId);
-		List<Product> products = this.productService.findAll();
-		ModelAndView modelAndView = new ModelAndView("product/list");
-		modelAndView.addObject("products", products);
-		return modelAndView;
+		return "redirect:/products";
 	}
 }
