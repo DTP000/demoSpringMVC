@@ -9,13 +9,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Listing User</title>
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+	<link href="<c:url value="/resources/css/bootstrap522.min.css" />" rel="stylesheet">
 </head>
 <body>
 	<div class="container">
 		<div class="row">
 			<h1 class="text-success text-center">Users</h1>
-		    <p><a href="user/new">Add new user</a></p>
+		    <p><a href="<c:url value="user/new" />">Add new user</a></p>
 		    <p>There are ${products.size()} users in this list.</p>
 		    <table class="table-info">
 		        <tr>
@@ -27,7 +27,7 @@
 		        <c:forEach var="user" items="${users}">
 		            <tr>
 		                <td>${user.id}</td>
-		                 <td><a href="user/${user.getId()}"> ${user.userName}</a></td>
+		                 <td><a href="<c:url value="user/${user.getId()}" />"> ${user.userName}</a></td>
 		                <td>${user.fullName}</td>
 		                <td>${user.displayName}</td>
 		            </tr>
@@ -36,8 +36,6 @@
 			
 		</div>
 	</div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
-                integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
-                crossorigin="anonymous"></script>
+    <script src="<c:url value="resources/js/bootstrap522.bundle.min.js" />"></script>
 </body>
 </html>

@@ -11,11 +11,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Create user</title>
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+	<link href="<c:url value="/resources/css/bootstrap522.min.css" />" rel="stylesheet">
 </head>
 <body>
 	<div class="container">
-	    <a href="../users">Back to users list</a>
+	    <a href="<c:url value="../users" />">Back to users list</a>
 		<p>
 	      <c:if test="${message != null}">
 	          <span class="text-success">${message}</span>
@@ -32,6 +32,10 @@
 			    <form:label path="password">Password:</form:label>
 			    <form:input path="password" type="password"/>
 			  </div>
+			 <div class="mb-3">
+			 	<label for="re-password">Re-Password:</label>
+			    <input id="re-password" name="re-password" type="password" value=""/>
+			  </div>
 			<div class="mb-3">
 			    <form:label path="displayName">DisplayName:</form:label>
 			    <form:input path="displayName"/>
@@ -45,8 +49,7 @@
 			
 		</div>
 	</div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
-                integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
-                crossorigin="anonymous"></script>
+    <script src="<c:url value="resources/js/bootstrap522.bundle.min.js" />"></script>
+               
 </body>
 </html>

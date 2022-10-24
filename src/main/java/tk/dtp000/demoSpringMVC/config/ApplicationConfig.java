@@ -3,9 +3,12 @@ package tk.dtp000.demoSpringMVC.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
-import org.springframework.web.servlet.view.JstlView;import tk.dtp000.demoSpringMVC.repository.ProductRepository;
+import org.springframework.web.servlet.view.JstlView;
+import tk.dtp000.demoSpringMVC.repository.ProductRepository;
 import tk.dtp000.demoSpringMVC.repository.ProductRepositoryImpl;
 import tk.dtp000.demoSpringMVC.repository.UserRepository;
 import tk.dtp000.demoSpringMVC.repository.UserRepositoryImpl;
@@ -19,7 +22,7 @@ import tk.dtp000.demoSpringMVC.service.UserServiceImpl;
 @ComponentScan(basePackages = {
 	"tk.dtp000.demoSpringMVC"
 })
-public class ApplicationConfig {
+public class ApplicationConfig  implements WebMvcConfigurer{
 	@Bean
 	public InternalResourceViewResolver resolver() {
 		InternalResourceViewResolver resolver = new InternalResourceViewResolver();
@@ -28,6 +31,12 @@ public class ApplicationConfig {
 		resolver.setSuffix(".jsp");
 		return resolver;
 	}
+	
+	public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry
+          .addResourceHandler("/resources/**")
+          .addResourceLocations("/resources/");	
+    }
 	
 	@Bean
 	public ProductService productService() {
